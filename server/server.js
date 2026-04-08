@@ -4,7 +4,7 @@ const { WebSocketServer } = require('ws');
 
 const app = express();
 const server = http.createServer(app); // remplace app.listen()
-const websocket = new WebSocketServer({ server }); // partage le même port
+const websocket = new WebSocketServer({ server }); // partage le mï¿½me port
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -12,22 +12,22 @@ app.use(express.static('public'));
 // Gestion WebSocket
 
 websocket.on('connection', (ws) => {
-    console.log('Client connecté !');
+    console.log('Client connecte !');
 
-    // Quand on reçoit un message
+    // Quand on recoit un message
     ws.on('message', (data) => {
-        console.log('Message reçu :', data.toString());
+        console.log(data.toString());
 
-        // Répondre au client
+        // RRpondre au client
         websocket.clients.forEach(user => {
             if (user !== ws) {
-                user.send('Reçu : ' + data.toString());
+                user.send(data.toString());
             }
         });
     });
 
     ws.on('close', () => {
-        console.log('Client déconnecté');
+        console.log('Client deconnecte');
     });
 });
 
