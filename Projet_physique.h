@@ -26,9 +26,6 @@ public slots:
     void onSocketConnected();
     void onSocketDisconnected();
     void onSocketTextMessageReceived(const QString& msg);
-    void onServerNewConnection();
-    void onClientReadyRead();
-    void onClientDisconnected();
 
 
 

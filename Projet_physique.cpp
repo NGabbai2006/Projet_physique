@@ -27,7 +27,6 @@ Projet_physique::~Projet_physique()
 }
 
 // arduino
-
 void Projet_physique::onSerialPortReadyRead()
 {
     QByteArray data = port->readAll();
@@ -40,6 +39,7 @@ void Projet_physique::onSerialPortReadyRead()
         ui.InfoConnection->setText("connecte toi au server");
     }
 }
+
 
 void Projet_physique::onSendMessageButtonClicked()
 {
@@ -106,31 +106,6 @@ void Projet_physique::onSocketTextMessageReceived(const QString& msg) {
     ui.InfoConnection->setText("Status connexion");
     ui.textEdit_AfficheWB->append("Message recu du client : " + msg);
 }
-
-void Projet_physique::onServerNewConnection() {
-
-    ui.InfoConnection->setText("Un client s'est connecte");
-    QWebSocket* client = server->nextPendingConnection();
-    QObject::connect(client, SIGNAL(textMessageReceived(QString)), this, SLOT(onSocketTextMessageReceived(QString)));
-    QObject::connect(client, SIGNAL(disconnected()), this, SLOT(onClientDisconnected()));
-
-
-}
-
-void Projet_physique::onClientReadyRead() {
-
-}
-
-
-void Projet_physique::onClientDisconnected() {
-
-    QWebSocket* obj = qobject_cast<QWebSocket*>(sender());
-
-    if (obj) {
-        obj->deleteLater();
-    }
-}
-
 
 
 void Projet_physique::onDisplayButtonMessageClicked()
