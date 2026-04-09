@@ -10,20 +10,20 @@ const chart = new Chart(Graph, {
         datasets: [{
             label: 'Fréquence du Générateur (Hz)',
             data: [],
-            borderColor: '#00ff00',
-            backgroundColor: 'rgba(0, 255, 0, 0.2)',
+            borderColor: '#e40000',
+            backgroundColor: 'rgba(255, 0, 0, 0.2)',
             tension: 0.2
         }]
     },
-    options: { 
+    options: {
         animation: false,
         scales: {
-            x: { 
+            x: {
                 title: { display: true, text: 'Délai (s)', color: 'white' },
                 ticks: { color: '#cccccc' },
                 grid: { color: '#333333' }
             },
-            y: { 
+            y: {
                 title: { display: true, text: 'Fréquence (Hz)', color: 'white' },
                 ticks: { color: '#cccccc' },
                 grid: { color: '#333333' }
@@ -34,7 +34,7 @@ const chart = new Chart(Graph, {
         }
     }
 });
-let TailleTb = 50; 
+let TailleTb = 50;
 ws.onmessage = (event) => {
     let value = event.data;
     const mtn = Date.now();
@@ -55,11 +55,12 @@ ws.onmessage = (event) => {
 
 
 
-if (localStorage.getItem('tailleTb') === null){
-     TailleTb = 50; }
-else {
-     TailleTb = localStorage.getItem('tailleTb'); 
-}
+    if (localStorage.getItem('tailleTb') === null) {
+        TailleTb = 50;
+    }
+    else {
+        TailleTb = localStorage.getItem('tailleTb');
+    }
     if (chart.data.labels.length > TailleTb) { // Limite de points affichés
         chart.data.labels.shift(); // Supprime le plus ancien label
         chart.data.datasets[0].data.shift(); // Supprime la valeur correspondante
@@ -70,6 +71,6 @@ else {
 
 document.getElementById('sendButton').addEventListener('click', () => {
     const input = document.getElementById('inputMessage');
-    localStorage.setItem('tailleTb', input.value); 
+    localStorage.setItem('tailleTb', input.value);
     window.location.reload();
 });

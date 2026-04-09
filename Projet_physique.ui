@@ -55,7 +55,7 @@
      <rect>
       <x>200</x>
       <y>10</y>
-      <width>131</width>
+      <width>141</width>
       <height>21</height>
      </rect>
     </property>
@@ -109,85 +109,13 @@
      <string>Envoyé</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>10</y>
-      <width>49</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Ip :</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="infoPort">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>50</y>
-      <width>111</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ButtonConnexion">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>80</y>
-      <width>151</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Connexion</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="infoIp">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>10</y>
-      <width>111</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>50</y>
-      <width>49</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Port :</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="InfoConnection">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>10</y>
-      <width>311</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Status Connexion: Disconnected</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="lineEdit_TestEnvoie">
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>170</y>
-      <width>161</width>
-      <height>71</height>
+      <y>200</y>
+      <width>151</width>
+      <height>41</height>
      </rect>
     </property>
    </widget>
@@ -204,14 +132,43 @@
      <string>TestEnvoie</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_AfficheWB">
+   <widget class="QLabel" name="InfoConnection2">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>60</y>
-      <width>241</width>
-      <height>70</height>
+      <x>430</x>
+      <y>10</y>
+      <width>151</width>
+      <height>21</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelServer">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>40</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Pageweb">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>100</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>lancer la page web</string>
     </property>
    </widget>
   </widget>
@@ -221,7 +178,7 @@
      <x>0</x>
      <y>0</y>
      <width>1279</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
@@ -273,22 +230,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>ButtonConnexion</sender>
-   <signal>clicked()</signal>
-   <receiver>Projet_physiqueClass</receiver>
-   <slot>onDisplayButtonConnectionClicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>675</x>
-     <y>129</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>639</x>
-     <y>288</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>TestEnvoie</sender>
    <signal>clicked()</signal>
    <receiver>Projet_physiqueClass</receiver>
@@ -297,6 +238,22 @@
     <hint type="sourcelabel">
      <x>830</x>
      <y>258</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>288</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Pageweb</sender>
+   <signal>clicked()</signal>
+   <receiver>Projet_physiqueClass</receiver>
+   <slot>onDisplayButtonPageWebClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>665</x>
+     <y>152</y>
     </hint>
     <hint type="destinationlabel">
      <x>639</x>
@@ -319,5 +276,6 @@
   <slot>onClientDisconnected()</slot>
   <slot>onSocketTextMessageReceived()</slot>
   <slot>onDisplayButtonAfficheWBClicked()</slot>
+  <slot>onDisplayButtonPageWebClicked()</slot>
  </slots>
 </ui>

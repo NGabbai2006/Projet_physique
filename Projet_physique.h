@@ -10,6 +10,7 @@
 class Projet_physique : public QMainWindow
 {
     Q_OBJECT
+   QString bufferSerie;
 
 public:
     Projet_physique(QWidget* parent = nullptr);
@@ -20,23 +21,18 @@ public slots:
     void onSerialPortReadyRead();
     void onSendMessageButtonClicked();
     void onOpenPortButtonClicked();
-	// websocket
+    // websocket
     void onDisplayButtonMessageClicked();
-    void onDisplayButtonConnectionClicked();
-    void onSocketConnected();
-    void onSocketDisconnected();
     void onSocketTextMessageReceived(const QString& msg);
-
-
+    void onServerNewConnection();
+    void onDisplayButtonPageWebClicked();
+    void onClientDisconnected();
 
 private:
     Ui::Projet_physiqueClass ui;
     QSerialPort* port;
-    QWebSocket* socket;
     QWebSocketServer* server;
-
-
-
+    QList<QWebSocket*> m_clients; 
 };
 
 
