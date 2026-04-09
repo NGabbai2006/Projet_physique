@@ -1,4 +1,4 @@
-const ws = new WebSocket('ws://172.29.18.255:2000');
+const ws = new WebSocket('ws://169.254.123.56:2000');
 ws.onopen = () => console.log('WebSocket connecté !');
 let temps = null;
 let totalTime = 0;
@@ -34,10 +34,9 @@ const chart = new Chart(Graph, {
         }
     }
 });
-
+let TailleTb = 50; 
 ws.onmessage = (event) => {
-    const value = parseFloat(event.data);
-    if (isNaN(value)) return;
+    let value = event.data;
     const mtn = Date.now();
     if (temps === null) {
         temps = mtn;
@@ -56,11 +55,21 @@ ws.onmessage = (event) => {
 
 
 
-
-    if (chart.data.labels.length > 30) { // Limite à 30 points
+if (localStorage.getItem('tailleTb') === null){
+     TailleTb = 50; }
+else {
+     TailleTb = localStorage.getItem('tailleTb'); 
+}
+    if (chart.data.labels.length > TailleTb) { // Limite de points affichés
         chart.data.labels.shift(); // Supprime le plus ancien label
         chart.data.datasets[0].data.shift(); // Supprime la valeur correspondante
     }
 
     chart.update();
 };
+
+document.getElementById('sendButton').addEventListener('click', () => {
+    const input = document.getElementById('inputMessage');
+    localStorage.setItem('tailleTb', input.value); 
+    window.location.reload();
+});

@@ -29,14 +29,27 @@ Projet_physique::~Projet_physique()
 // arduino
 void Projet_physique::onSerialPortReadyRead()
 {
-    QByteArray data = port->readAll();
-    QString str(data);
-    ui.textEdit_donnees->insertPlainText(str);
-    if (socket->isValid()) {
-		socket->sendTextMessage(str);
-    }
-    else {
-        ui.InfoConnection->setText("connecte toi au server");
+	// evite les bugs de valeurs en lisant ligne par ligne et pas tout d'un coup 
+    while (port->canReadLine()) {
+        QByteArray data = port->readLine();
+        QString ligne(data);
+
+		// retire les espaces et les retours à l
+        ligne = ligne.trimmed();
+
+        
+        ui.textEdit_donnees->insertPlainText(ligne + "\n");
+
+        // Envoi au WebSocket
+        if (socket->isValid()) {
+            if (!ligne.isEmpty()) {
+                socket->sendTextMessage(ligne);
+                qDebug() << "ENVOYE :" << ligne;
+            }
+        }
+        else {
+            ui.InfoConnection->setText("connecte toi au server");
+        }
     }
 }
 
